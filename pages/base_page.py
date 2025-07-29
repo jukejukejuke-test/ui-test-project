@@ -3,8 +3,6 @@ import math
 from selenium.common import NoSuchElementException
 from selenium.common.exceptions import NoAlertPresentException
 
-from conftest import browser
-
 
 class BasePage:
     def __init__(self, browser, url, timeout=10):
