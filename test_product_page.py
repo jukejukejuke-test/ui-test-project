@@ -19,5 +19,3 @@ def test_guest_can_add_product_to_basket(browser):
 
     cart_page.should_be_correct_price(price_before_adding, price_after_adding)
     cart_page.should_be_correct_product_name(name_before_adding, name_after_adding)
-
-    time.sleep(10)
