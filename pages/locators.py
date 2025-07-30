@@ -16,3 +16,4 @@ class ProductPageLocators:
 class CartPageLocators:
     PRODUCT_NAME = (By.XPATH, "//*[@id='messages']/div[1]/div/strong")
     PRODUCT_PRICE = (By.CSS_SELECTOR, ".product_main>.price_color")
+    SUCCESS_MESSAGE = (By.XPATH, "//*[@id='messages']/div[1][contains(@class, 'alert-success')]")

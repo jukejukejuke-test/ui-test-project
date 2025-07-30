@@ -1,7 +1,9 @@
 import math
 
 from selenium.common import NoSuchElementException
-from selenium.common.exceptions import NoAlertPresentException
+from selenium.common.exceptions import NoAlertPresentException, TimeoutException
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 
 class BasePage:
@@ -15,16 +17,64 @@ class BasePage:
 
     def is_element_present(self, how, what) -> bool:
         """
-        Метод, проверяющий существование элемента
+        Проверяет существование элемента
 
         :param how: Как ищем элемент: id, css selector, xpath, etc
         :param what: Какой элемент ищем
-        :return: Возвращает булевое значение, найден ли элемент
+        :return: Булевое значение, найден ли элемент
         """
         try:
             self.browser.find_element(how, what)
         except NoSuchElementException:
             return False
+        return True
+
+    def is_not_element_appears(self, how, what, timeout=4) -> bool:
+        """
+        Проверяет, что элемент не появляется за заданное время
+
+        :param how: Как ищем элемент: id, css selector, xpath, etc
+        :param what: Какой элемент ищем
+        :param timeout: Время ожидания
+        :return: Булевое значение, появился ли элемент
+        """
+        try:
+            WebDriverWait(self.browser, timeout).until(EC.presence_of_element_located((how, what)))
+        except TimeoutException:
+            return True
+        return False
+
+    def is_element_appears(self, how, what, timeout=4) -> bool:
+        """
+        Проверяет, что элемент появляется за заданное время
+
+        :param how: Как ищем элемент: id, css selector, xpath, etc
+        :param what: Какой элемент ищем
+        :param timeout: Время ожидания
+        :return: Булевое значение, появился ли элемент
+        """
+        try:
+            WebDriverWait(self.browser, timeout).until(EC.presence_of_element_located((how, what)))
+        except TimeoutException:
+            return False
+        return True
+
+    def is_disappeared(self, how, what, timeout=4) -> bool:
+        """
+        Проверяет, что элемент пропал за заданное время
+
+        :param how: Как ищем элемент: id, css selector, xpath, etc
+        :param what: Какой элемент ищем
+        :param timeout: Время ожидания
+        :return: Булевое значение, пропал ли элемент
+        """
+
+        try:
+            WebDriverWait(self.browser, timeout, 1, TimeoutException). \
+                until_not(EC.presence_of_element_located((how, what)))
+        except TimeoutException:
+            return False
+
         return True
 
 

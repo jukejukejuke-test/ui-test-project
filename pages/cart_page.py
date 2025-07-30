@@ -13,3 +13,11 @@ class CartPage(BasePage):
 
     def should_be_correct_product_name(self, name_before_adding, name_after_adding):
         assert name_before_adding == name_after_adding, "Name of product was changed!"
+
+    def should_not_be_success_message(self):
+        assert self.is_not_element_appears(*CartPageLocators.SUCCESS_MESSAGE), \
+            "Success message is presented, but should not be"
+
+    def should_be_success_message(self):
+        assert self.is_element_appears(*CartPageLocators.SUCCESS_MESSAGE), \
+            "Success message is presented, but should not be"
