@@ -103,3 +103,6 @@ class BasePage:
     def go_to_cart(self):
         go_to_cart_btn = self.browser.find_element(*BasePageLocators.CART_BTN)
         go_to_cart_btn.click()
+
+    def should_be_authorized_user(self):
+        assert self.is_element_present(*BasePageLocators.USER_ICON)
