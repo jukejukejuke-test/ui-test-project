@@ -1,14 +1,11 @@
 from pages.base_page import BasePage
 from pages.locators import ProductPageLocators
+from pages.locators import BasePageLocators
 
 class ProductPage(BasePage):
     def add_to_cart(self):
         add_to_cart_btn = self.browser.find_element(*ProductPageLocators.ADD_TO_CART_BTN)
         add_to_cart_btn.click()
-
-    def go_to_cart(self):
-        go_to_cart_btn = self.browser.find_element(*ProductPageLocators.CART_BTN)
-        go_to_cart_btn.click()
 
     def get_product_name(self):
         return self.browser.find_element(*ProductPageLocators.PRODUCT_NAME).text

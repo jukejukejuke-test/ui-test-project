@@ -21,3 +21,9 @@ class CartPage(BasePage):
     def should_be_success_message(self):
         assert self.is_element_appears(*CartPageLocators.SUCCESS_MESSAGE), \
             "Success message is presented, but should not be"
+
+    def should_not_be_products(self):
+        text_about_empty_cart = self.browser.find_element(*CartPageLocators.TEXT_ABOUT_EMPTY_CART).text
+        assert "Ваша корзина пуста" in text_about_empty_cart
+        assert self.is_not_element_appears(*CartPageLocators.PRODUCT_NAME), \
+            "Products is presented, but should not be"
