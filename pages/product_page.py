@@ -1,6 +1,5 @@
 from pages.base_page import BasePage
 from pages.locators import ProductPageLocators
-from pages.locators import BasePageLocators
 
 class ProductPage(BasePage):
     def add_to_cart(self):

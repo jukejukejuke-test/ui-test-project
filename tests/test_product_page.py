@@ -3,7 +3,6 @@ import random
 from pages.login_page import LoginPage
 from pages.product_page import ProductPage
 from pages.basket_page import CartPage
-from pages.base_page import BasePage
 
 
 @pytest.mark.login
